@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #15202B;
+    --bg-secondary: #1E2A37;
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --accent-primary: #2D9CDB;
+    --accent-secondary: #7F56D9;
+    --accent-tertiary: #F43F5E;
+    --accent-quaternary: #10B981;
+  }
+
+  body {
+    @apply antialiased font-sans;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  .dark {
+    --bg-primary: #15202B;
+    --bg-secondary: #1E2A37;
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+  }
+
+  .light {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F1F5F9;
+    --text-primary: #1E293B;
+    --text-secondary: #64748B;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2D9CDB] to-[#7F56D9];
+  }
+
+  .gradient-text-alt {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#F43F5E] to-[#10B981];
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .glass-card {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .glass-input {
+    @apply bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 
+           focus:outline-none focus:ring-2 focus:ring-[#2D9CDB]/50 transition-all duration-200;
+  }
+
+  .button-gradient {
+    @apply bg-gradient-to-r from-[#2D9CDB] to-[#7F56D9] hover:opacity-90 
+           shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .button-gradient-alt {
+    @apply bg-gradient-to-r from-[#F43F5E] to-[#10B981] hover:opacity-90 
+           shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(45, 156, 219, 0.2);
+  }
+
+  .glow-alt {
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.2);
+  }
+
+  .glow-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(45, 156, 219, 0.3);
+  }
+
+  .glow-hover-alt:hover {
+    box-shadow: 0 0 30px rgba(244, 63, 94, 0.3);
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(to right, #2D9CDB, #7F56D9);
+    padding: 1px;
+    border-radius: inherit;
+  }
+
+  .gradient-border-alt {
+    position: relative;
+    background: linear-gradient(to right, #F43F5E, #10B981);
+    padding: 1px;
+    border-radius: inherit;
+  }
+
+  .gradient-border::before,
+  .gradient-border-alt::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 156, 219, 0.4);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(45, 156, 219, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 156, 219, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
